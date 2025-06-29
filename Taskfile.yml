@@ -1,0 +1,27 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  CLIENT_ID: Hello, World!
+
+tasks:
+  build:
+    desc: Build the Docker image for todoist-webhook-setup
+    cmds:
+      - docker build -t tmp .
+    silent: true
+  docker-shell:
+    deps:
+      - build
+    desc: Run a shell in a Docker container with the todoist-webhook-setup script
+    cmds:
+      - docker build -t tmp .
+      - docker run --rm -it -p 3055:3055 tmp /bin/bash 
+  run:
+    desc: Run the todoist-webhook-setup script
+    deps:
+      - build
+    cmds:
+      - docker run --rm -it -p 3055:3055 -e CLIENT_ID=5b87d9083736462985a609d6180ac2a2 tmp 
+    silent: true

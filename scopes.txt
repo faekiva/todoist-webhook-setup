@@ -1,0 +1,6 @@
+task:add
+data:read
+data:read_write
+data:delete
+project:delete
+backups:read
